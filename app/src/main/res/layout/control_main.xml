@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:camera="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@id/layout_permissions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:focusable="true"
+        android:text="START"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorPrimaryLight"
+        android:id="@+id/start" android:clickable="true"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:focusable="true"
+        android:text="CAPTURE"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorPrimaryLight"
+        android:id="@+id/capture" android:clickable="true"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:focusable="true"
+        android:text="STOP"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorPrimaryLight"
+        android:id="@+id/stop" android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/master_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+       />
+
+    </LinearLayout>
+
+</FrameLayout>
