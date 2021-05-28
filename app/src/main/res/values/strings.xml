@@ -374,4 +374,18 @@
     <string name="start_camera_and_get_preview">Start Camera and get Preview</string>
     <string name="get_next_picture">Get next Picture</string>
     <string name="stop_camera_and_show_gallery">Stop Camera and Show Gallery</string>
+
+    //Added on 28th May
+    <string name="main1">SELECT THE PHONE MODE</string>
+    <string name="master_text">
+
+            Master: Controls the Slave Phone.
+        <br>
+            Hold it in your hand, look at the live photo
+        </br>
+            from Slave and Click.
+
+    </string>
+    <string name="slave_text">Slave: The mobile taking the photo. \nRest it on a surface at a distance giving it
+        \n the clear line-of-sight.</string>
 </resources>

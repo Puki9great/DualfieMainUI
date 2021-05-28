@@ -1,78 +1,98 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:camera="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backdrop_new"
     tools:context=".ui.ControlActivity" >
 
     <ImageView
         android:id="@+id/master_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="TODO"
         android:layout_gravity="top"
+        android:contentDescription="TODO"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:src="@drawable/ic_launcher"
-        />
+        camera:layout_constraintBottom_toBottomOf="parent"
+        camera:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        camera:layout_constraintVertical_bias="0.381"
+        tools:layout_editor_absoluteX="0dp" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/master_image"
-        android:layout_marginTop="100dp" >
-
-
-        <Button
-            android:layout_below="@+id/master_image"
-            android:id="@+id/fetch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="FETCH"
-            android:textColor="@color/colorPrimaryLight" />
-
-        <Button
-            android:layout_below="@+id/master_image"
-            android:layout_toRightOf="@+id/fetch"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:focusable="true"
-            android:text="CAPTURE"
-            android:background="@color/colorAccent"
-            android:textColor="@color/colorPrimaryLight"
-            android:id="@+id/capture" android:clickable="true"/>
-
-        <Button
-
-            android:layout_below="@+id/master_image"
-            android:layout_toRightOf="@+id/capture"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:focusable="true"
-            android:text="STOP"
-            android:background="@color/colorAccent"
-            android:textColor="@color/colorPrimaryLight"
-            android:id="@+id/stop" android:clickable="true"/>
-        <Button
-            android:layout_below="@+id/master_image"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:focusable="true"
-            android:text="SAVE"
-            android:layout_toRightOf="@+id/stop"
-            android:background="@color/colorAccent"
-            android:textColor="@color/colorPrimaryLight"
-            android:id="@+id/save" android:clickable="true"/>
-        />
+        android:layout_below="@+id/master_image">
 
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/fetch"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/master_image"
+        android:background="@drawable/round_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="FETCH"
+        android:textColor="@color/colorPrimaryLight"
+        camera:layout_constraintBottom_toBottomOf="parent"
+        camera:layout_constraintEnd_toStartOf="@+id/capture"
+        camera:layout_constraintHorizontal_bias="0.862"
+        camera:layout_constraintStart_toStartOf="parent"
+        camera:layout_constraintTop_toBottomOf="@+id/master_image" />
+
+    <Button
+        android:id="@+id/capture"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/master_image"
+        android:layout_marginEnd="8dp"
+        android:layout_toRightOf="@+id/fetch"
+        android:background="@drawable/round_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="CAPTURE"
+        android:textColor="@color/colorPrimaryLight"
+        camera:layout_constraintBottom_toBottomOf="parent"
+        camera:layout_constraintEnd_toStartOf="@+id/stop"
+        camera:layout_constraintTop_toBottomOf="@+id/master_image" />
+
+    <Button
+
+        android:id="@+id/stop"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/master_image"
+        android:layout_marginEnd="8dp"
+        android:layout_toRightOf="@+id/capture"
+        android:background="@drawable/round_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="STOP"
+        android:textColor="@color/colorPrimaryLight"
+        camera:layout_constraintBottom_toBottomOf="parent"
+        camera:layout_constraintEnd_toStartOf="@+id/save"
+        camera:layout_constraintTop_toBottomOf="@+id/master_image" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/master_image"
+        android:layout_marginEnd="44dp"
+        android:layout_toRightOf="@+id/stop"
+        android:background="@drawable/round_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="SAVE"
+        android:textColor="@color/colorPrimaryLight"
+        camera:layout_constraintBottom_toBottomOf="parent"
+        camera:layout_constraintEnd_toEndOf="parent"
+        camera:layout_constraintTop_toBottomOf="@+id/master_image" />
 
 
-
-
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
