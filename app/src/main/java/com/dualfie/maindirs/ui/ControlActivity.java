@@ -53,13 +53,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class
-ControlActivity extends AppCompatActivity implements View.OnClickListener {
+public class ControlActivity extends AppCompatActivity implements View.OnClickListener {
 
-    /*
-
-
-     */
     private static final String TAG = "ControlActivity";
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothDevice mDevice;
@@ -73,40 +68,28 @@ ControlActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.master_image)
     ImageView display;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.start)
-    Button mFetch;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.capture)
-    Button mCapture;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.stop)
-    Button mStop;
-
-
+    Button mFetch, mCapture, mStop, mSave;
     private Bitmap mImage;
 
     @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.control_main);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_control);
+
+        mFetch = (Button) findViewById(R.id.fetch);
+        mCapture = (Button) findViewById(R.id.capture);
+        mStop = (Button) findViewById(R.id.stop);
+        mSave = (Button) findViewById(R.id.save);
+
         boolean show = false;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "Bluetooth is not available!", Toast.LENGTH_SHORT).show();
             finish();
         }
-        bluetoothMessageController = new BluetoothComm(this, mHandler);
-        DeviceModel model = new DeviceModel();
-        if (model.getPaired()) {
-            mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(model.getAddress());
-        } else { // not paired
-        }
-        bluetoothMessageController.connect(mDevice);
+
 
 
         mHandler = new Handler(new Handler.Callback() {
@@ -121,7 +104,7 @@ ControlActivity extends AppCompatActivity implements View.OnClickListener {
 
                         switch (msg.arg1) {
                             case Constants.STATE_CONNECTED:
-                                setTitle(mDevice.getName());
+                                //setTitle(mDevice.getName());
                                 break;
                             case Constants.STATE_CONNECTING:
                                 setTitle("Connecting...");
@@ -170,6 +153,14 @@ ControlActivity extends AppCompatActivity implements View.OnClickListener {
                 return false;
             }
         });
+
+        bluetoothMessageController = new BluetoothComm(this, mHandler);
+        DeviceModel model = new DeviceModel();
+        if (model.getPaired()) {
+            mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(model.getAddress());
+        } else { // not paired
+        }
+        bluetoothMessageController.connect(mDevice);
 
         //JSON
         mCapture.setOnClickListener(new View.OnClickListener() {

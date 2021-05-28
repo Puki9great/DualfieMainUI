@@ -53,6 +53,7 @@ public class DiscoverDevice extends AppCompatActivity {
     ArrayAdapter<String> mPairedDevicesArrayAdapter;
     Set<BluetoothDevice> pairedDevices;
     Button scan;
+    TextView text_paired, text_new;
 
     protected BluetoothDevice dev;
 
@@ -77,11 +78,13 @@ public class DiscoverDevice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pair);
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         scan = (Button) findViewById(R.id.button_scan);
+        text_paired= (TextView) findViewById(R.id.txt_paired);
+        text_new= (TextView) findViewById(R.id.txt_new);
+
         locationPermissionCheck();
-        mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.model_text);
         pairedListView = (ListView) findViewById(R.id.paired_devices);
 
 
@@ -96,7 +99,23 @@ public class DiscoverDevice extends AppCompatActivity {
 
 
         //paired
-        getPairedList();
+        mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.model_text);
+        btAdapter.enable();
+        pairedDevices = btAdapter.getBondedDevices();
+
+        if (pairedDevices.size() > 0) {
+
+            for (BluetoothDevice device : pairedDevices) {
+                mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+            }
+        } else {
+            String noDevices = "NONE PAIRED";
+            mPairedDevicesArrayAdapter.add(noDevices);
+        }
+        pairedListView.setAdapter(mPairedDevicesArrayAdapter);
+        pairedListView.setOnItemClickListener(mDeviceClickListener);
+
+
 
         //new
         mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.model_text);
@@ -117,23 +136,6 @@ public class DiscoverDevice extends AppCompatActivity {
 
     }
 
-    private void getPairedList()
-    {
-        btAdapter.enable();
-        pairedDevices = btAdapter.getBondedDevices();
-
-        if (pairedDevices.size() > 0) {
-            findViewById(R.id.txt_paired).setVisibility(View.VISIBLE);
-            for (BluetoothDevice device : pairedDevices) {
-                mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-            }
-        } else {
-            String noDevices = "NONE PAIRED";
-            mPairedDevicesArrayAdapter.add(noDevices);
-        }
-        pairedListView.setAdapter(mPairedDevicesArrayAdapter);
-        //pairedListView.setOnItemClickListener(mDeviceClickListener);
-    }
 
 
 
@@ -161,6 +163,7 @@ public class DiscoverDevice extends AppCompatActivity {
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            mNewDevicesArrayAdapter.clear();
             Log.d("BroadcastActions", "Action "+action+" received");
 
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {

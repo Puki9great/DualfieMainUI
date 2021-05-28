@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:camera="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ControlActivity" >
+
+    <ImageView
+        android:id="@+id/master_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        android:layout_gravity="top"
+        android:src="@drawable/ic_launcher"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/master_image"
+        android:layout_marginTop="100dp" >
+
+
+        <Button
+            android:layout_below="@+id/master_image"
+            android:id="@+id/fetch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="FETCH"
+            android:textColor="@color/colorPrimaryLight" />
+
+        <Button
+            android:layout_below="@+id/master_image"
+            android:layout_toRightOf="@+id/fetch"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:focusable="true"
+            android:text="CAPTURE"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimaryLight"
+            android:id="@+id/capture" android:clickable="true"/>
+
+        <Button
+
+            android:layout_below="@+id/master_image"
+            android:layout_toRightOf="@+id/capture"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:focusable="true"
+            android:text="STOP"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimaryLight"
+            android:id="@+id/stop" android:clickable="true"/>
+        <Button
+            android:layout_below="@+id/master_image"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:focusable="true"
+            android:text="SAVE"
+            android:layout_toRightOf="@+id/stop"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimaryLight"
+            android:id="@+id/save" android:clickable="true"/>
+        />
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>
